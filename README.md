@@ -46,6 +46,5 @@ python inference.py --img_path [path_to_img_file_or_directory] --model_path [pat
 We provide pretrained weights in the table below:
 | Source | Performance                                   | Weights                                                                                                                                          |
 | ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| A      | B: 12.5MAE, 22.6MSE<br>Q: 114.2MAE, 196.4MSE  | [Google Drive](https://drive.google.com/file/d/1yHHZZTOaQ9fM56QuDB1HIna4K1p297nG/view?usp=sharing) |
-| B      | A: 88.7MAE, 158.1MSE<br>Q: 157.7MAE, 264.8MSE | [Google Drive](https://drive.google.com/file/d/1sYGMGNOqj0OUEz-5zE9S1G7hjOzmtJsZ/view?usp=sharing) |
+| B      | A: 88.7MAE, 158.1MSE<br>Q: 157.7MAE, 264.8MSE | [Google Drive](https://drive.google.com/file/d/1ygkz3wc8jjs58BNQWSgzX8s3zfn_j1Pi/view?usp=sharing) |
 
