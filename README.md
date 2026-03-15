@@ -41,6 +41,10 @@ Run the following command:
 ```
 python inference.py --img_path [path_to_img_file_or_directory] --model_path [path_to_model_weight] --save_path output.txt --vis_dir vis
 ```
+## Code Availability
+
+The paper is currently under review. To comply with the double-blind review policy, we only release the **inference code** and **partial pretrained weights** at this stage.
+The **complete training code** and **more pretrained models** will be released after the paper is accepted.
 
 ## Pretrained Weights
 We provide pretrained weights in the table below:
