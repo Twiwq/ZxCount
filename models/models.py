@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torchvision import models
 from einops import rearrange
 from math import sqrt
-from trainers.vgg_decoder_high import VGGDecoder_high
+
 
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1, dilation=1, bias=False, bn=False, relu=True,groups=1):
@@ -216,9 +216,7 @@ class DGModel_memcls(DGModel_base):
 
         y_cat, x3 = self.forward_fe(x)
         y_den = self.den_dec(y_cat)
-
-       
-
+        
         e_mask_pred = self.err_head(y_den)
         mask_bin = self.transform_cls_mask_pred(e_mask_pred)
 
@@ -229,8 +227,6 @@ class DGModel_memcls(DGModel_base):
         c = self.cls_head(x3)
         c_resized = self.transform_cls_map_pred(c)
         
-
-
         d = self.den_head(den1)*c_resized
         dc =  upsample(d*c_resized, scale_factor=4)
         
@@ -270,75 +266,4 @@ class DGModel_final(DGModel_memcls):
         return x_masked1, x_masked2, x_masked_bg1,x_masked_bg2,e_mask
 
     def forward_train(self, img1, img2, c_gt=None):
-
-        y_cat1, x3_1 = self.forward_fe(img1)
-        y_cat2, x3_2 = self.forward_fe(img2)
-        y_den1 = self.den_dec(y_cat1)
-        y_den2 = self.den_dec(y_cat2)  #80*80
-
-
-
-        glo_down1=self.conv_pool2(y_den1)  #40*40
-        glo_down2=self.conv_pool2(y_den2)
-        _,_,_,_,e_mask_down=self.IN(glo_down1,glo_down2)
-        e_mask_1=upsample(e_mask_down.float(),scale_factor=2,mode='nearest')
-
-        _,_,_,_,e_mask_2=self.IN(y_den1,y_den2)
-
-        e_mask = (e_mask_1 + e_mask_2)/2
-
-        e_mask_pred1 = self.err_head(y_den1)
-        e_mask_pred2 = self.err_head(y_den2)
-        l_err = F.binary_cross_entropy(e_mask_pred1, e_mask.to(e_mask_pred1.dtype).detach()) + \
-                F.binary_cross_entropy(e_mask_pred2, e_mask.to(e_mask_pred2.dtype).detach())
-
-
-        y_den_mask1=y_den1*e_mask
-        y_den_mask2=y_den2*e_mask
-        y_bg1=y_den1*(1-e_mask)
-        y_bg2=y_den2*(1-e_mask)
-
-
-
-        den1=self.conv_enh(y_den_mask1)
-        den2=self.conv_enh(y_den_mask2)
-        y_bg1=self.conv_enh(y_bg1)
-        y_bg2=self.conv_enh(y_bg2)
-
-        fg_down1=self.conv_pool2(den1)
-        fg_down2=self.conv_pool2(den2)
-        bg_down1=self.conv_pool2(y_bg1) #40*40
-        bg_down2=self.conv_pool2(y_bg2)
-
-
-        cls_score_fg1 = self.mask_head(fg_down1)  #25 40 40
-        cls_score_fg2 = self.mask_head(fg_down2)
-
-        cls_score_max_fg1 = cls_score_fg1.max(dim=1, keepdim=True)[0]
-        cls_score_max_fg2 = cls_score_fg2.max(dim=1, keepdim=True)[0]
-        cls_score_fg1 = cls_score_fg1 - cls_score_max_fg1
-        cls_score_fg2 = cls_score_fg2 - cls_score_max_fg2
-
-
-        c1 = self.cls_head(x3_1)
-        c2 = self.cls_head(x3_2)
-        c_resized1 = self.transform_cls_map_pred(c1)
-        c_resized2 = self.transform_cls_map_pred(c2)
-        c_err = torch.abs(c_resized1 - c_resized2)
-        c_resized_gt = self.transform_cls_map_gt(c_gt)
-        c_resized = torch.clamp(c_resized_gt + c_err, 0, 1)
-
-
-        d1 = self.den_head(den1) #80*80
-        d2 = self.den_head(den2)
-        dc1 = upsample(d1*c_resized,4)  #320*320
-        dc2 = upsample(d2*c_resized,4)
-
-
-
-        fg_dp1 = self.den_head(fg_down1) #80*80
-        fg_dp2 = self.den_head(fg_down2)
-        
-
-        return (dc1, dc2),(glo_down1,glo_down2,fg_down1,fg_down2,bg_down1,bg_down2),l_err,(c1,c2), (cls_score_fg1,cls_score_fg2),(fg_dp1,fg_dp2)
-
+        return super().forward(img1)
