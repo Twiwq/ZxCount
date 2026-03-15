@@ -46,7 +46,6 @@ python inference.py --img_path [path_to_img_file_or_directory] --model_path [pat
 We provide pretrained weights in the table below:
 | Source | Performance                                   | Weights                                                                                                                                          |
 | ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| A      | B: 11.4MAE, 19.7MSE<br>Q: 115.7MAE, 199.8MSE  | [OneDrive](https://hkustconnect-my.sharepoint.com/:u:/g/personal/zpengac_connect_ust_hk/EaWnUPugulxIiP4gK2F_bqcBJwJhru0aWa8JH6l8Dbk5DQ?e=2B0kJP)<br>[Google Drive](https://drive.google.com/file/d/1yHHZZTOaQ9fM56QuDB1HIna4K1p297nG/view?usp=sharing) |
-| B      | A: 99.6MAE, 182.9MSE<br>Q: 165.6MAE, 290.4MSE | [OneDrive](https://hkustconnect-my.sharepoint.com/:u:/g/personal/zpengac_connect_ust_hk/EZp54KXswPVFnXHP2dhIGRABUZYrH4ZXaxBr5y9M7io2Bg?e=DnGP6v)<br>[Google Drive](https://drive.google.com/file/d/1sYGMGNOqj0OUEz-5zE9S1G7hjOzmtJsZ/view?usp=sharing) |
-| Q      | A: 65.5MAE, 110.1MSE<br>B: 12.3MAE, 24.1MSE   | ~~OneDrive~~<br>[Google Drive](https://drive.google.com/file/d/16zqOyKsEevoxSFOCNcUakdIq0dsAns5v/view?usp=sharing) |
+| A      | B: 12.5MAE, 22.6MSE<br>Q: 114.2MAE, 196.4MSE  | [OneDrive](https://hkustconnect-my.sharepoint.com/:u:/g/personal/zpengac_connect_ust_hk/EaWnUPugulxIiP4gK2F_bqcBJwJhru0aWa8JH6l8Dbk5DQ?e=2B0kJP)<br>[Google Drive](https://drive.google.com/file/d/1yHHZZTOaQ9fM56QuDB1HIna4K1p297nG/view?usp=sharing) |
+| B      | A: 88.7MAE, 158.1MSE<br>Q: 157.7MAE, 264.8MSE | [OneDrive](https://hkustconnect-my.sharepoint.com/:u:/g/personal/zpengac_connect_ust_hk/EZp54KXswPVFnXHP2dhIGRABUZYrH4ZXaxBr5y9M7io2Bg?e=DnGP6v)<br>[Google Drive](https://drive.google.com/file/d/1sYGMGNOqj0OUEz-5zE9S1G7hjOzmtJsZ/view?usp=sharing) |
 
